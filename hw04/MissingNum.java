@@ -1,4 +1,4 @@
-//Team Equation
+//Team Derivative
 //Shakil Rafi and Alitquan Malick
 //APCS2 pd4
 //HW04 -- Where In the Array Is Carmen San Numero?
