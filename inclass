@@ -1,0 +1,13 @@
+#! /bin/sh
+
+date '+%Y-%d-%m' > t
+read -r today < t
+
+if [ ! -d $today ]; then
+   mkdir $today
+else
+   echo "haha nope"
+fi
+
+rm t
+echo $today

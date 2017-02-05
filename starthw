@@ -1,0 +1,28 @@
+#! /bin/bash
+
+read configs < .configs
+name=${configs/*name=/}
+name=${name/;*/}
+period=${configs/*period=/}
+period=${period/;*/}
+
+if [ "sjdak$1" = sjdak ] || [ -d "hw$1" ]; then
+        echo "Error: No homework number given or that is already a directory"
+        exit
+fi
+
+mkdir "hw$1"
+
+cd "hw$1"
+echo "Enter file name to be submitted:"
+read className
+echo "Enter homework description:"
+read desc
+
+touch $className
+echo "//$name" > $className
+echo "//APCS1 pd$period" >> $className
+echo "//HW$1 -- $desc" >> $className
+date '+//%Y-%m-%d' >> $className
+
+emacs $className &
