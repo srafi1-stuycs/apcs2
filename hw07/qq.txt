@@ -1,4 +1,59 @@
+<<<<<<< HEAD
 //Shakil Rafi
 //APCS2 pd3
 //HW07 -- Xiang's Troubles
 //2017-02-15
+=======
+Shakil Rafi
+APCS1 pd4
+HW07 -- Xiang's Problem
+2017-02-15
+
+State space search:
+1. Look through all possible states starting from an empty space (all possible positions to add a piece)
+2. Look through each possible state from each new state
+3. When you find a solution, add it to the list of possible solutions
+
+Queen on chess board:
+Put a queen on any possible position and recursively go through each possible successive position, skipping states in which a queen attacks another queen.
+If no states are found that match the desired properties, then there are no solutions.
+
+a) 2x2 - Putting a queen in any space immediately disqualifies any other spaces, so only one queen can be placed.
+b) 3x3 - There are 3 possible starting positions without duplicates; none lead to having 3 queens on the board
+c) 4x4 - There are 2 solutions (with reflections) found through trial and positioning new queens at a knight's move away
+    .Q..       ..Q.
+    ...Q  and  Q...
+    Q...       ...Q
+    ..Q.       .Q..
+d) 5x5 - There are 2 distinct solutions (without reflections) found through trial and positioning new queens at a knight's move away
+    ....Q       ...Q.
+    .Q...       Q....
+    ...Q.  and  ..Q..
+    Q....       ....Q
+    ..Q..       .Q...
+
+e) 6x6 - There is 1 distinct solution found through trial and positioning new queens at a knight's move away
+   ..Q...
+   .....Q
+   .Q....
+   ....Q.
+   Q.....
+   ...Q..
+f) 7x7 - There are 2 distinct solutions found through trial and positioning new queens at a knight's move away
+   ....Q..       ...Q...
+   .Q.....       ......Q
+   ...Q...       ..Q....
+   .....Q.       .....Q.
+   .......       .Q.....
+   ..Q....       ....Q..
+   Q......       Q......
+g) 8x8 - There don't seem to be any solutions for an 8x8 board, the maximum amount of queens seems to be 7
+   Q.......
+   ...Q....
+   .Q......
+   .......Q
+   ..Q.....
+   ......Q.
+   ........
+   ....Q...
+>>>>>>> e6201810e4139fcc22780d2347f066755af0a496

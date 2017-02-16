@@ -92,7 +92,7 @@ public class QueenBoard
 	    if( row + offset < _board.length ) {
 		_board[row+offset][col+offset]--;
 	    }
-	    // ?
+	    // move on to one more position away
 	    offset++;
 	}
 	return true;
