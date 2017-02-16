@@ -1,0 +1,13 @@
+Shakil Rafi
+APCS1 pd4
+HW07 -- Xiang's Problem
+2017-02-15
+
+State space search:
+1. Look through all possible states starting from an empty space (all possible positions to add a piece)
+2. Look through each possible state from each new state
+3. When you find a solution, add it to the list of possible solutions
+
+Queen on chess board:
+Put a queen on any possible position and recursively go through each possible successive position, skipping states in which a queen attacks another queen.
+If no states are found that match the desired properties, then there are no solutions.

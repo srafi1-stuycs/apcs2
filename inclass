@@ -1,13 +1,6 @@
 #! /bin/sh
 
-date '+%Y-%d-%m' > t
-read -r today < t
+t=$(date '+%Y-%d-%m' )
 
-if [ ! -d $today ]; then
-   mkdir $today
-else
-   echo "haha nope"
-fi
-
-rm t
-echo $today
+mkdir $t
+echo $t
