@@ -1,3 +1,8 @@
+//Shakil Rafi
+//APCS2 pd4
+//HW08 -- [Freddie Mercury, Brian May, Roger Taylor, John Deacon] x n
+//2017-02-22
+
 /***
  * class QueenBoard
  * Generates solutions for N-Queens problem.
@@ -28,11 +33,15 @@ public class QueenBoard
      * If no solution, board is filled with 0's, 
      * returns false.
      * ALGORITHM:
-     * [...]
+     * 1. Start on one column
+     * 2. Add a queen to the first row of that column
+     * 3. Recursively go to the next column
+     *   a. If the column exceeds the size of the board, that is a solution
+     *   b. If there are no valid rows to place a queen, go back one move
      */
     public boolean solve()
     {
-	return false;
+	return solveH(0);
     }
 
     /**
@@ -40,9 +49,21 @@ public class QueenBoard
      */
     private boolean solveH( int col ) 
     {
-	return false;
+	if (col == _board.length) {
+	    printSolution();
+	    return true;
+	}
+	boolean ret = false;
+	for (int i = 0; i < _board.length; i++) {
+	    if (!addQueen(i, col)) {
+		continue;
+	    }
+	    if (solveH(col + 1))
+		ret = true;
+	    removeQueen(i, col);
+	}
+	return ret;
     }
-
 
     //print a valid placement of n queens
     public void printSolution()
@@ -56,16 +77,16 @@ public class QueenBoard
 	    }
 	    System.out.println();
 	}
+	System.out.println();
     }
-
-
 
     //================= YE OLDE SEPARATOR =================
 
     /***
-     * <General description>
-     * precondition: 
-     * postcondition: 
+     * Adds a queen to the board and denotes all horizontal and diagonal positions as invalid
+     * precondition: _board has been initialized
+     * postcondition: change the value at given position to 1
+     *                decrement all horizontal and diagonal positions
      */
     private boolean addQueen(int row, int col)
     {
@@ -80,12 +101,12 @@ public class QueenBoard
 	// variable to help access positions queen is attacking
 	int offset = 1;
 
-	// go through each position vertical, horizontal, and diagonal from the given position in which the queen was placed
+	// go through each position horizontal, and diagonal from the given position in which the queen was placed
 	while(col+offset < _board[row].length) {
-	    // ?
+	    // decrement each position in the column
 	    _board[row][col+offset]--;
 
-	    // ?
+	    // decrement each position diagonally
 	    if( row - offset >= 0 ) {
 		_board[row-offset][col+offset]--;
 	    }
@@ -100,20 +121,21 @@ public class QueenBoard
 
 
     /***
-     * <General description>
-     * precondition: 
-     * postcondition: 
+     * Removes a queen from the board and adjusts all horizontal and diagonal positions 
+     * precondition: _board has been initialized
+     * postcondition: change the value at given position to 0
+     *                increment all horizontal and diagonal positions
      */
     private boolean removeQueen(int row, int col)
     {
-	// ?
+	// check if there is actually a queen in the given position 
 	if ( _board[row][col] != 1 ) {
 	    return false;
 	}
-	_board[row][col] = 0;	// ?
-	int offset = 1;	        // ?
+	_board[row][col] = 0;	// set the position to 0 (no queen)
+	int offset = 1;	        // set initial offset 
 
-	// ?
+	// increment each position on the horizontal and diagonals
 	while( col+offset < _board[row].length ) {
 	    _board[row][col+offset]++;
 	    if( row - offset >= 0 ) {
@@ -129,9 +151,9 @@ public class QueenBoard
 
 
     /***
-     * <General description>
-     * precondition: 
-     * postcondition: 
+     * Renders a string version of the object
+     * precondition: _board has been initialized
+     * postcondition: String of all positions and their int values
      */
     public String toString() 
     {
@@ -149,6 +171,16 @@ public class QueenBoard
     //main method for testing...
     public static void main( String[] args )
     {
+	QueenBoard a;
+	for (int i = 1; i < 5; i++) {
+	    a = new QueenBoard(i);
+	    if (a.solve()) {
+		System.out.println("Solution(s) found for n=" + i);
+	    } else {
+		System.out.println("No solutions for n=" + i);
+	    }
+	}	
+	
 	QueenBoard b = new QueenBoard(5);
         System.out.println(b);
 	b.addQueen(3,0);
