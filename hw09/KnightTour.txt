@@ -1,0 +1,14 @@
+Shakil Rafi
+APCS2 pd4
+HW09 -- Get on the bus
+2017-02-27
+
+Knight algortihm:
+1. Start with the knight on the top left corner of the chessboard
+2. Recursively move again and again, marking each position you land on and keeping track of the moves 
+3. If there are no possible moves, check if you landed on each position
+  a. If you landed on each position, record/print out the solution
+  b. Go back one move and try out the next move (going clockwise in possible moves)
+4. When you go back enough moves to get back to the starting point, start at the next position in the row
+  a. Move on to the next row when you get to the end of the current row
+5. If you get to the end of the last row without finding any solutions, there are no solutions

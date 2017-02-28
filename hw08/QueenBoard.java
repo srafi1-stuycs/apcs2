@@ -172,6 +172,12 @@ public class QueenBoard
     public static void main( String[] args )
     {
 	QueenBoard a;
+	for (String s : args) {
+	    try {
+		a = new QueenBoard(Integer.parseInt(s));
+		a.solve();
+	    } catch (Exception e) {}
+	}
 	for (int i = 1; i < 5; i++) {
 	    a = new QueenBoard(i);
 	    if (a.solve()) {
@@ -179,8 +185,8 @@ public class QueenBoard
 	    } else {
 		System.out.println("No solutions for n=" + i);
 	    }
-	}	
-	
+	}
+
 	QueenBoard b = new QueenBoard(5);
         System.out.println(b);
 	b.addQueen(3,0);
