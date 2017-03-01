@@ -165,7 +165,7 @@ public class KnightTour
 	//tf.findTour( startX, startY, 1 );   // 1 or 0 ?
 
 	//for fixed starting location, use line below:
-	tf.findTour( 2, 2, 1 );
+	tf.findTour( 6, 6, 1 );
 
     }//end main()
 
