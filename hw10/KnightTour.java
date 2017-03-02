@@ -1,12 +1,17 @@
+//Shakil Rafi
+//APCS2 pd4
+//HW10 -- We on award tour
+//2017-02-28
+
 /*======================================
   class KnightTour
   Animates a Knight's Tour of a square chess board.
 
   Mean execution times for boards of size n*n:
-  n=5   __s    over __ executions 
-  n=6   __s    over __ executions
-  n=7   __s    over __ executions
-  n=8   __s    over __ executions
+  n=5   0.256s    over 10 executions
+  n=6   0.302s    over 10 executions
+  n=7   0.211s    over 10 executions
+  n=8   ? s    over 10 executions
   ======================================*/
 
 /***
@@ -14,9 +19,9 @@
  * $ javac KnightTour.java
  * $ java KnightTour
  * $ java KnightTour [N]
- *  
+ *
  * (default N value: 8)
- * 
+ *
  * POSIX TIP: to measure execution time, use time program:
  * $ time java KnightTour 5
  ***/
@@ -26,7 +31,7 @@ import java.io.*;
 import java.util.*;
 
 
-class TourFinder 
+class TourFinder
 {
     //instance vars
     private int[][] board;
@@ -56,10 +61,10 @@ class TourFinder
     }//end constructor
 
 
-    public String toString() 
+    public String toString()
     {
 	//send ANSI code "ESC[0;0H" to place cursor in upper left
-	String retStr = "[0;0H";  
+	String retStr = ";0H";
 	//emacs shortcut: C-q, then press ESC
 	//emacs shortcut: M-x quoted-insert, then press ESC
 
@@ -67,7 +72,7 @@ class TourFinder
 	for( i=0; i < sideLength+4; i++ ) {
 	    for( j=0; j < sideLength+4; j++ )
 		retStr = retStr + String.format( "%3d", board[j][i] );
-	             //"%3d" allots 3 spaces for each number
+	    //"%3d" allots 3 spaces for each number
 	    retStr = retStr + "\n";
 	}
 	return retStr;
@@ -75,7 +80,7 @@ class TourFinder
 
 
     //helper method to keep try/catch clutter out of main flow
-    private void delay( int n ) 
+    private void delay( int n )
     {
 	try {
 	    Thread.sleep(n);
@@ -86,13 +91,13 @@ class TourFinder
 
 
     /*********************************************
-     * void findTour(int x,int y,int moves) -- use depth-first w/ backtracking algo 
+     * void findTour(int x,int y,int moves) -- use depth-first w/ backtracking algo
      * to find valid knight's tour
      * @param x      starting x-coord
      * @param y      starting y-coord
      * @param moves  number of moves made so far
      *********************************************/
-    public void findTour( int x, int y, int moves ) 
+    public void findTour( int x, int y, int moves )
     {
 	//delay(50); //slow it down enough to be followable
 
@@ -100,8 +105,10 @@ class TourFinder
 	if ( solved ) System.exit(0);
 
 	//primary base case: tour completed
-	if ( moves == sideLength*sideLength ) {
+	if ( moves > sideLength*sideLength ) {
 	    solved = true;
+	    System.out.println(this);
+	    System.exit(0);
 	}
 	//other base case: stepped off board or onto visited cell
 	if ( board[x][y] != 0 ) {
@@ -111,12 +118,20 @@ class TourFinder
 	//and recursively generate tour possibilities from current pos
 	else {
 
-	    
-	    
+	    board[x][y] = moves;
+	    findTour(x + 1, y + 2, moves + 1);
+	    findTour(x + 2, y + 1, moves + 1);
+	    findTour(x - 1, y + 2, moves + 1);
+	    findTour(x - 2, y + 1, moves + 1);
+	    findTour(x + 1, y - 2, moves + 1);
+	    findTour(x + 2, y - 1, moves + 1);
+	    findTour(x - 1, y - 2, moves + 1);
+	    findTour(x - 2, y - 1, moves + 1);
+
 	    //delay(1000); //uncomment to slow down enough to view
 
 	    /*======================================
-	      Recursively try to solve (find tour) from 
+	      Recursively try to solve (find tour) from
 	      each of knight's available moves.
 	      . e . d .
 	      f . . . c
@@ -129,34 +144,34 @@ class TourFinder
 
 	    //If made it this far, path did not lead to tour, so back up.
 
-	    /* YOUR KODE HERE */
+	    board[x][y] = 0;
 
-	    System.out.println( this ); //refresh screen
+	    //System.out.println( this ); //refresh screen
 	}
     }//end findTour()
 
 }//end class TourFinder
 
 
-public class KnightTour 
+public class KnightTour
 {
     public static void main( String[] args ) {
 
 	int n = 8;
 
-	try { 
+	try {
 	    n = Integer.parseInt( args[0] );
-	}catch( Exception e ) { 
-	    System.out.println( "Invalid input. Using board size " 
+	}catch( Exception e ) {
+	    System.out.println( "Invalid input. Using board size "
 				+ n + "..." );
 	}
 
 	TourFinder tf = new TourFinder( n );
 
 	//clear screen using ANSI control code
-	System.out.println( "[2J" ); 
+	System.out.println( "" );
 
-	//display board 
+	//display board
 	System.out.println( tf );
 
 	//for random starting location, use lines below:
@@ -165,7 +180,15 @@ public class KnightTour
 	//tf.findTour( startX, startY, 1 );   // 1 or 0 ?
 
 	//for fixed starting location, use line below:
-	tf.findTour( 6, 6, 1 );
+	//tf.findTour( 3, 3, 1 );
+
+
+	for (int i = 2; i < n; i++) {
+	    for (int j = 2; j < n; j++) {
+		tf.findTour(i, j, 1);
+	    }
+	    System.out.println("trial with i=" + i);
+	}
 
     }//end main()
 

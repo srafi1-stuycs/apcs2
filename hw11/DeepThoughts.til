@@ -3,4 +3,23 @@ APCS2 pd4
 HW11 -- Probing the Depths...
 2017-03-02
 
-Q1: 
+Mean execution times for boards of size n*n:
+  n=5   0.256s    over 10 executions
+  n=6   0.302s    over 10 executions
+  n=7   0.211s    over 10 executions
+  n=8   ? s       over 10 executions
+
+Q1: From any starting position, can an open tour always be found? Explain.
+It's not guaranteed that you can find an open tour because there is no certainty in the set of moves.
+
+Q2: Same, but for closed tour.
+If any closed tour can be found on a certain sized board, then you can start at any position, go on through the rest of the solution and loop back through the beginning and continue until you get to the position before the starting position.
+
+Q3: How do you explain the increase in execution time as n increases?
+Although my execution times fluctuated without a noticeable trend, it theoretically should hhave increased because as n increases, there are more possibilities for moves. With an increase in possibilities, there are more moves to try out before you get to a solution.
+
+Q4: Thoughts on optimization?
+From any given position, try moves that land you closer to the edges before moves that land you closer to the middle. Taking care of these spaces earlier makes sure you don't have to worry about them later on as they are less accessible.
+
+Maze algorithm:
+Start at starting position and attempt moving to the right, bottom, left, then top. With each move search through each possible move depth-first until you reach the end.
