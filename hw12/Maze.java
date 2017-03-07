@@ -1,3 +1,9 @@
+//Team I Have No Idea
+//Shakil Rafi and Chris Yu
+//APCS2 pd4
+//HW12 -- Thinkers of the Corn
+//2017-03-03
+
 /***
  * SKEELTON for class 
  * MazeSolver
@@ -111,32 +117,31 @@ class MazeSolver
 	delay(50); //slow it down enough to be followable
 
 	//primary base case
-	if (x > w || y > h || x < 0 || y < 0) {
+	if (x >= w || y >= h || x < 0 || y < 0) {
 	    return;
 	}
-	else if (maze[y][x] == EXIT) {
+	else if (maze[x][y] == EXIT) {
 	    System.out.println(this);
 	    System.exit(0);
 	}
 	//other base case(s)...
-	else if (maze[y][x] == WALL) {
+	else if (maze[x][y] == WALL) {
 	    return;
 	}
-	else if (maze[y][x] == VISITED_PATH) {
+	else if (maze[x][y] == VISITED_PATH) {
 	    return;
 	}
 	//recursive reduction
 	else {
+	    maze[x][y] = VISITED_PATH;
 	    System.out.println(this);
-	
-	    maze[y][x] = VISITED_PATH;
 
 	    solve(x + 1, y);
 	    solve(x, y + 1);
 	    solve(x - 1, y);
 	    solve(x, y - 1);
 
-	    maze[y][x] = PATH;
+	    maze[x][y] = PATH;
 	}
 	
     }
@@ -168,13 +173,12 @@ public class Maze
 	    //drop our hero into maze at random location on path
 	    //the Tim Diep way:
 	    Random r = new Random();
-	    int startX = r.nextInt( w );
-	    int startY = r.nextInt( h );
-	    while ( !ms.onPath(startX,startY) ) {
-		startX = r.nextInt( w );
-		startY = r.nextInt( h );
+	    int startX = r.nextInt( 80 );
+	    int startY = r.nextInt( 25 );
+	    while ( !ms.onPath(startX, startY) ) {
+		startX = r.nextInt( 80 );
+		startY = r.nextInt( 25 );
 	    }
-
 	    ms.solve( startX, startY );
 	} catch( Exception e ) { 
 	    System.out.println( "Error reading input file." );
