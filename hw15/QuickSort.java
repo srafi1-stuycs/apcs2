@@ -1,6 +1,6 @@
 //Shakil Rafi
 //APCS2 pd4
-//HW15 --
+//HW15 -- So so quick
 //2017-03-08
 
 /*****************************************************
@@ -8,14 +8,25 @@
  * (skeleton) <<delete this line if untrue>>
  * Implements quicksort algo to sort an array of ints in place
  *
- * 1. Summary of QuickSort algorithm:
- * QSort(arr): 
+ * 1. QuickSort algorithm:
+ * Partition the given array such that all elements to the left of a given
+ * element are less than that element and all elements to the right of it
+ * are greater than it.
+ * Afterwards, partition the upper half and lower half in the same way as the
+ * original array until the upper and lower bounds collide (ie: you have
+ * partitioned the enitre array)
  *
- * 2a. Worst pivot choice / array state and associated runtime: 
+ * 2a. Worst pivot choice / array state and associated runtime:
+ * The worst pivot creates a partition of one element and another parition
+ * that is the original partition without one element
  *
  * 2b. Best pivot choice / array state and associated runtime:
+ * The best pivot will partition the array into two equal parts (ie: you
+ * divide the search space in half)
  *
  * 3. Approach to handling duplicate values in array:
+ * Duplicate values are put right after the pivot and they do not mess up
+ * the algorithm otherwise.
  *
  *****************************************************/
 
