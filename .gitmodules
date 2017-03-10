@@ -1,0 +1,12 @@
+[submodule "mergesort"]
+	path = mergesort
+	url = ./mergesort/
+[submodule "rumpus-room"]
+	path = rumpus-room
+	url = ./rumpus-room/
+[submodule "library"]
+	path = library
+	url = ./library/
+[submodule "closet"]
+	path = closet
+	url = ./closet/
