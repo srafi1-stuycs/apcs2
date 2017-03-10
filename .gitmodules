@@ -9,4 +9,4 @@
 	url = ./library/
 [submodule "closet"]
 	path = closet
-	url = ./closet/
+	url = https://github.com/ap251/closet.git
