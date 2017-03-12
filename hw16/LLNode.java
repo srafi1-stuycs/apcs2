@@ -1,3 +1,8 @@
+//Shakil Rafi
+//APCS2 pd4
+//HW16a -- We Got a Little Ol' Convoy...
+//2017-03-11
+
 /*****************************************************
  * class LLNode
  * Implements a node, for use in lists and other container classes.

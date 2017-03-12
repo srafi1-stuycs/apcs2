@@ -1,3 +1,8 @@
+//Shakil Rafi
+//APCS2 pd4
+//HW16b -- Rockin' Through the Night
+//2017-03-11
+
 /*****************************************************
  * class LList
  * skeleton
@@ -22,7 +27,36 @@ public class LList implements List
     //--------------v  List interface methods  v--------------
 
     public boolean add(String str) {
-	
+	if (_size == 0) {
+	    _head = new LLNode(str, null);
+	} else {
+	    LLNode currentLLNode = _head;
+	    while (currentLLNode.getNext() != null) {
+		currentLLNode = currentLLNode.getNext();
+	    }
+	    currentLLNode.setNext(new LLNode(str, null));
+	}
+	_size += 1;
+	return true;
+    }
+
+    public String get(int i) {
+	LLNode currentLLNode = _head;
+	for (int j = 0; j < i; j++) {
+	    currentLLNode = currentLLNode.getNext();
+	}
+	return currentLLNode.getCargo();
+    }
+		      
+
+    public String set(int i, String s) {
+	LLNode currentLLNode = _head;
+	for (int j = 0; j < i; j++) {
+	    currentLLNode = currentLLNode.getNext();
+	}
+	String old = currentLLNode.getCargo();
+	currentLLNode.setCargo(s);
+	return old;
     }
     
     //return number of nodes in list
@@ -47,7 +81,6 @@ public class LList implements List
     //main method for testing
     public static void main( String[] args ) 
     {
-	/*~~~~s~l~i~d~e~~~m~e~~~d~o~w~n~~~~~~~~~~~~~~~~~~~~ (C-k, C-k, C-y) 
 	LList james = new LList();
 
 	System.out.println( james );
@@ -75,7 +108,6 @@ public class LList implements List
 	System.out.println( "...and now 2nd item is: " + james.set(1,"got") );
 
 	System.out.println( james );
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     }
 
 }//end class LList
