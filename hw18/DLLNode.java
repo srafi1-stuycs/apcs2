@@ -1,3 +1,8 @@
+//Shakil Rafi
+//APCS2 pd4
+//HW18 -- on the DLL
+//2017-03-15
+
 public class DLLNode 
 {
     private String _cargo;    //cargo may only be of type String
