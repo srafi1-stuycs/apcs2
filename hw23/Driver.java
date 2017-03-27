@@ -1,10 +1,6 @@
 public class Driver  {
-    public static String flip(String s) {
-	String ret = "";
-	for (int i = s.length() - 1; i >= 0; i--) {
-	    ret += s.charAt(i);
-	}
-	return ret;
+    public static String flip(Latkes s) {
+	Latkes ret = new Latkes(s.getSize());
     }
 
     public static boolean allMatched(String s) {
@@ -25,3 +21,5 @@ public class Driver  {
     }
 
 }
+
+{{{()}{}}}
