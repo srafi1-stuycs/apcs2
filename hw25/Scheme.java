@@ -50,6 +50,8 @@ public class Scheme  {
 		    }
 		}
 		nums.push(temp);
+		if (!numNums.isEmpty())
+		    numNums.push(numNums.pop() + 1);
 	    } else if (c == '(') {
 		numNums.push(0);
 	    } else if (c == '+' || c == '-' || c == '*') {
