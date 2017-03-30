@@ -37,11 +37,18 @@ public class RQueue<T> implements Queue<T>
 	}
 
 
+    
     public void enqueue( T enQVal ) 
     {
-	LLNode nextNode = new LLNode(enQVal, _end, null);
-	_end.setNext(nextNode);
-	_end = nextNode;
+	if (isEmpty()) {
+	    LLNode l = new LLNode(enQVal, null);
+	    _front = l;
+	    _end = l;
+	} else {
+	    _end.setNext(new LLNode(enQVal, null));
+	    _end = _end.getNext();
+	}
+	_size++;
     }
 
 
@@ -51,6 +58,9 @@ public class RQueue<T> implements Queue<T>
     {
 	T ret = _front.getValue();
 	_front = _front.getNext();
+	if (isEmpty())
+	    _end = null;
+	_size--;
 	sample();
 	return ret;
     }
@@ -66,44 +76,50 @@ public class RQueue<T> implements Queue<T>
     /******************************************
      * void sample() -- a means of "shuffling" the queue
      * algo:
-     * 
+     * Choose a random node by traversing a random numberof nodes
+     * Swap this node with the _front node
+     * This effectively gets a random node with each dequeue
      * 
      ******************************************/
     public void sample () 
     {
-	LLNode newFront = _front;
+	//System.out.println(this);
+	if (_size < 2)
+	    return;
+	LLNode temp = _front;
 	int lim = (int)(Math.random()*_size);
 	for (int i = 0; i < lim - 1; i++) {
-	    newFront = newFront.getNext();
+	    temp = temp.getNext();
 	}
-	
+	LLNode newFront = temp.getNext();
+	temp.setNext(temp.getNext().getNext());
+	newFront.setNext(_front);
+	_front = newFront;
+	//System.out.println(this + "\n");
     }
 
     public boolean isEmpty() 
     { 
-	return _front = null;
+	return _front == null;
     }//O(1)
 
 
     // print each node, separated by spaces
     public String toString() 
     { 
-	String ret = "FRONT-->";
+String ret = "FRONT-->";
 	LLNode current = _front;
-	for (int i = 0; i < _size - 1; i++) {
-	    ret += current.getValue();
+	while (current != null) {
+	    ret += current.getValue() + "-->";
 	    current = current.getNext();
 	}
 	ret += "END";
 	return ret;
     }//O(n)
 
-
-
     //main method for testing
     public static void main( String[] args ) 
     {
-	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	  Queue<String> PirateQueue = new RQueue<String>();
 
 	  System.out.println("\nnow enqueuing..."); 
@@ -116,7 +132,8 @@ public class RQueue<T> implements Queue<T>
 
 	  System.out.println("\nnow testing toString()..."); 
 	  System.out.println( PirateQueue ); //for testing toString()...
-
+	  System.out.println(PirateQueue.peekFront());
+	  
 	  System.out.println("\nnow dequeuing..."); 
 	  System.out.println( PirateQueue.dequeue() );
 	  System.out.println( PirateQueue.dequeue() );
@@ -125,9 +142,8 @@ public class RQueue<T> implements Queue<T>
 	  System.out.println( PirateQueue.dequeue() );
 	  System.out.println( PirateQueue.dequeue() );
 
-	  System.out.println("\nnow dequeuing fr empty queue..."); 
+	  System.out.println("\nnow dequeuing from empty queue..."); 
 	  System.out.println( PirateQueue.dequeue() );
-	  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     }//end main
 
 }//end class RQueue
