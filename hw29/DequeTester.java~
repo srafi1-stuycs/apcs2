@@ -1,0 +1,14 @@
+public class DequeTester  {
+
+    public static void main(String[] args) {
+
+	LLDeque<Integer> deck = new LLDeque<Integer>();
+	System.out.println("Start: " + deck);
+	for (int i = 0; i < 10; i++) {
+	    deck.addFirst(i);
+	}
+	System.out.println("After additions: " + deck);
+	
+    }
+
+}
