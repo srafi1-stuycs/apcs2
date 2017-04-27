@@ -1,0 +1,26 @@
+Shakil Rafi
+APCS2 pd4
+HW33 -- A Tree Grows in 251
+2017-04-26
+
+Algorithm for constructing tree given IN notation and PRE notation:
+1. Identify root as the first letter in the PRE notation traversal
+2. Split the IN notation traversal into a left branch, current node, and right branch
+3. Go to the left branch
+   a. If it's empty, go to the right branch
+   b. If there is only one letter, write that letter as the left branch and go on to the right branch
+   c. the next letter in the PRE notation traversal is the next node in the branch
+   d. start from step 2 for this branch (going depth first)
+4. Go to the right branch and follow the same steps as for the left branch (step 3), but instead of going to the right branch again, go back up one level to branches that haven't been traversed
+
+Algorithm for constructing tree given IN notation and POST notation:
+1. Identify root as the last letter in the POST notation traversal
+2. Split the IN notation traversal into a left branch, current node, and right branch
+3. Go to the right branch
+   a. If it's empty, go to the left branch
+   b. If there is only one letter, write that letter as the right branch and go on to the left branch
+   c. the next letter in the POST notation traversal is the next node in the branch
+   d. start from step 2 for this branch (going depth first)
+4. Go to the left branch and follow the same steps as for the right branch (step 3), but instead of going to the left branch again, go back up one level to branches that haven't been traversed
+
+If given POST and PRE notation, there is no algorithm for a definite answer because there may be multiple possible answers
