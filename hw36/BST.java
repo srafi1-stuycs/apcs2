@@ -1,3 +1,8 @@
+//Shakil Rafi
+//APCS2 pd4
+//HW36 -- Prune Your Tree
+//2017-05-07
+
 /*****************************************************
  * class BST
  * Implementation of the BINARY SEARCH TREE abstract data type (ADT) 
